@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>study!</title>
+  <script defer src="./gloomyDate.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <input type="text" id="num" value="20230424140101" />
+    <button onclick="javascript:generator()">generate</button>
+  </div>
+</body>
+<script>
+
+function generator(){
+  const num = document.querySelector('#num').value
+  alert(gloomyDate.date(num))
+  // input1: 20220504221005
+  // input2: 2022-05-04 22:10:05
+}  
+</script>
+</html>

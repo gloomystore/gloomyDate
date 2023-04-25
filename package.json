@@ -1,0 +1,24 @@
+{
+  "name": "gloomydate",
+  "version": "1.0.3",
+  "description": "this returns past time string",
+   "main": "gloomyDate.js",
+  "module": "gloomyDate.esm.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloomystore/gloomyDate.git"
+  },
+  "keywords": [
+    "getDate",
+    "date"
+  ],
+  "author": "gloomystore",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gloomystore/gloomyDate/issues"
+  },
+  "homepage": "https://github.com/gloomystore/gloomyDate#readme"
+}

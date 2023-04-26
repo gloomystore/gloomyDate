@@ -1,6 +1,6 @@
 # GloomyDate
 
-이 프로젝트는 FE개발자 [이대영](https://www.gloomy-store.com)의 날짜구하기 라이브러리 입니다.
+이 프로젝트는 FE개발자 [GloomyStore](https://www.gloomy-store.com)의 날짜구하기 라이브러리 입니다.
 
 ## 사용법
 
@@ -9,7 +9,7 @@
 * `설치`
 
     * `npm i gloomydate`로 설치합니다 \
-    일반 HTML 프로젝트의 경우  `<script src='https://cdn.gloomy-store.com/gloomyDate/'></script>`로 추가합니다.\
+    일반 HTML 프로젝트의 경우  `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js'></script>`로 추가합니다.
 
 * `사용`
 
@@ -36,7 +36,7 @@
     영어, 외국어 인자인 en, 혹은 jp를 2번 째 인자로 넣을 경우 외국어로 출력 됩니다.
 
 * `실제 사용 사례`
-```
+```js
 import {gloomyDate} from gloomydate
 const [data,setData] = useState([{ title: 'title1', date: '2022-05-10 10:55:40'}, { title: 'title2', date: '2023-02-11 15:50:30'}])
 useEffect(()=>{
@@ -59,7 +59,7 @@ useEffect(()=>{
 
 ```
 * 실제로 렌더된 HTML
-```
+```js
 <div class="list-bg">
     <p class="date">11달 전</p> 
     <p class="date">2달 전</p> 
@@ -69,4 +69,4 @@ useEffect(()=>{
 ## 시작
 
 터미널상에서 `npm install gloomydate` 명령어로 node module을 설치하십시오.\
-그 후 `npm start` 혹은 `yarn start` 등으로 앱을 시작하십시오.\
+그 후 `npm start` 혹은 `yarn start` 등으로 앱을 시작하십시오.

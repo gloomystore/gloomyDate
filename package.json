@@ -1,0 +1,29 @@
+{
+  "name": "gloomydate",
+  "version": "1.0.8",
+  "description": "this returns past time string",
+  "type": "module",
+  "main": "gloomyDate.esm.js",
+  "module": "gloomyDate.esm.js",
+  "scripts": {
+    "test": "node --experimental-modules test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gloomystore/gloomyDate.git"
+  },
+  "keywords": [
+    "getDate",
+    "date",
+    "gloomyDate",
+    "android",
+    "ios"
+  ],
+  "author": "gloomystore",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gloomystore/gloomyDate/issues"
+  },
+  "homepage": "https://github.com/gloomystore/gloomyDate#readme",
+  "releaseDate": "April 25, 2023"
+}

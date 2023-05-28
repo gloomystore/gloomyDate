@@ -1,4 +1,4 @@
-export const gloomyDate = {
+const gloomyDate = {
   date:function(str,lang){
     if(typeof(str) === 'number') str = str.toString();
     if(!lang) lang = 'ko';
@@ -9,11 +9,12 @@ export const gloomyDate = {
       jp:['年前', '月前', '日前', '時間前', '分前', '今'],
     }
     const regex = /(\d){4}-(\d){2}-(\d){2}\s(\d){2}:(\d){2}:(\d){2}/;
-    const regex2 = /(\d){14}/;
+    const regex2 = /(\d){4}-(\d){2}-(\d){2}T(\d){2}:(\d){2}:(\d){2}/;
+    const regex3 = /(\d){14}/;
 
-    if(!regex.test(str) && !regex2.test(str)) return str
+    if(!regex.test(str) && !regex2.test(str) && !regex3.test(str)) throw new Error(`input string's length must be 14, but input ${str}`)
     try {
-      const newFormat = regex.test(str) ? str : `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6,8)} ${str.slice(8,10)}:${str.slice(10,12)}:${str.slice(12,14)}`
+      const newFormat = regex.test(str) ? str : regex2.test(str) ? str.replace('T',' ') : `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6,8)} ${str.slice(8,10)}:${str.slice(10,12)}:${str.slice(12,14)}`
 
       const baseDate = Number(new Date(newFormat))
       const date = Number(this.newDate());
@@ -33,3 +34,4 @@ export const gloomyDate = {
     return date
   }
 }
+export {gloomyDate}

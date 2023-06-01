@@ -29,9 +29,10 @@ const gloomyDate = {
       console.log(err)
     }
   },
-  newDate: function(){
+  newDate: function() {
     const date = new Date();
-    return date
+    date.setHours(date.getHours() - 9); // UTC 시간에서 9시간 빼기
+    return date;
   }
 }
 export {gloomyDate}

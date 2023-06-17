@@ -1,6 +1,6 @@
 {
   "name": "gloomydate",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "this returns past time string",
   "type": "module",
   "main": "gloomyDate.esm.js",

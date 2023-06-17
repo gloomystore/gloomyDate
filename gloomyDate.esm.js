@@ -12,7 +12,10 @@ const gloomyDate = {
     const regex2 = /(\d){4}-(\d){2}-(\d){2}T(\d){2}:(\d){2}:(\d){2}/;
     const regex3 = /(\d){14}/;
 
-    if(!regex.test(str) && !regex2.test(str) && !regex3.test(str)) throw new Error(`input string's length must be 14, but input ${str}`)
+    if(!regex.test(str) && !regex2.test(str) && !regex3.test(str)) {
+      console.warn(`input string's length must be 14, but input ${str}`);
+      return str
+    }
     try {
       const newFormat = regex.test(str) ? str : regex2.test(str) ? str.replace('T',' ') : `${str.slice(0,4)}-${str.slice(4,6)}-${str.slice(6,8)} ${str.slice(8,10)}:${str.slice(10,12)}:${str.slice(12,14)}`
 

@@ -1,0 +1,19 @@
+.wrap {
+  background: #3a3a3a;
+  padding: 20px 20px 50px;
+}
+.wrap p,.wrap h3,.wrap h4, .wrap dt {
+  color: #c7c7c7;
+}
+.box-demo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+.box-demo * {
+  display: block;
+  width: 100%;
+}

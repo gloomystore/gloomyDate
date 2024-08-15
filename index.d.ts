@@ -1,5 +1,6 @@
+// index.d.ts
 declare module 'gloomydate' {
-  export const gloomyDate: {
+  const gloomyDate: {
     /**
      * Converts a date input into a relative time string.
      * @param input - The date input, which can be a string (formatted as 'YYYY-MM-DD HH:MM:SS' or 'YYYYMMDDHHMMSS'),
@@ -15,4 +16,6 @@ declare module 'gloomydate' {
      */
     newDate(): Date;
   };
+
+  export default gloomyDate;
 }

@@ -19,7 +19,7 @@
       hljs.highlightAll();
     });
   </script>
-  <link rel="stylesheet" href="./demo/styles.css">
+  <link rel="stylesheet" href="./demo/styls.css">
   <link rel="stylesheet" href="./demo/highlight.css">
 </head>
 
@@ -109,11 +109,9 @@ npm install gloomydate
 <code class="language-js">
 gloomyDate.date('2023-04-26 08:10:22', 'en') // formatted string
 gloomyDate.date('20230426081022', 'jp') // string
-gloomyDate.date(20230426081022, 'ko') // number
+gloomyDate.date(1723725494302, 'ko') // number
 
-// New Features: 'after' and 'before' calculation
-gloomyDate.date('2023-04-26 08:10:22', 'en', 'after') // Time until '2023-04-26 08:10:22'
-gloomyDate.date('2023-04-26 08:10:22', 'en', 'before') // Time since '2023-04-26 08:10:22'
+gloomyDate.date(Number(new Date()) + 1000) // number
 </code>
 </pre>
           <p>
@@ -124,7 +122,8 @@ gloomyDate.date('2023-04-26 08:10:22', 'en', 'before') // Time since '2023-04-26
 <code class="js white">
 2 days ago
 2日前
-2日前
+2일 전
+잠시 후
 </code>
 </pre>
           <p>
@@ -149,18 +148,6 @@ gloomyDate.date('2023-04-26 08:10:22', 'en', 'before') // Time since '2023-04-26
       <p>
         <button onclick="generator2()">Generate</button>
       </p>
-      <p>
-        <input type="text" id="num3" value="2024-08-15 00:00:00" />
-      </p>
-      <p>
-        <button onclick="generator3()">Generate Time Until</button>
-      </p>
-      <p>
-        <input type="text" id="num4" value="2024-08-15 00:00:00" />
-      </p>
-      <p>
-        <button onclick="generator4()">Generate Time Since</button>
-      </p>
     </div>
 
   </div>
@@ -174,16 +161,6 @@ function generator() {
 function generator2() {
   const num = document.querySelector('#num2').value;
   alert(gloomyDate.date(num, 'en'));
-}
-
-function generator3() {
-  const num = document.querySelector('#num3').value;
-  alert(gloomyDate.date(num, 'en', 'after'));
-}
-
-function generator4() {
-  const num = document.querySelector('#num4').value;
-  alert(gloomyDate.date(num, 'en', 'before'));
 }
 </script>
 </html>

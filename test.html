@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>gloomyDate</title>
+  <!-- <script defer src="./gloomyDate.js" type="module"></script> -->
+  <script type="module">
+    import { gloomyDate } from './gloomyDate.js'
+    const d = Number(new Date()) + 1000
+    const date = gloomyDate.date(d)
+    console.log(gloomyDate.date)
+    document.body.append(date)
+  </script>
+</head>
+
+<body>
+  
+</body>
+</html>

@@ -26,9 +26,9 @@ const gloomyDate = {
     else if (['ko', 'en', 'jp'].indexOf(lang) === -1) lang = 'ko';
 
     const unit = {
-      ko: ['년 전', '달 전', '일 전', '시간 전', '분 전', '방금 전'],
-      en: ['years ago', 'months ago', 'days ago', 'hours ago', 'minutes ago', 'now'],
-      jp: ['年前', '月前', '日前', '時間前', '分前', '今'],
+      ko: ['년 전', '달 전', '일 전', '시간 전', '분 전', '방금 전', '년 후', '달 후', '일 후', '시간 후', '분 후', '조금 뒤'],
+      en: ['years ago', 'months ago', 'days ago', 'hours ago', 'minutes ago', 'now', 'years later', 'months later', 'days later', 'hours later', 'minutes later', 'moments later'],
+      jp: ['年前', '月前', '日前', '時間前', '分前', '今', '年後', '月後', '日後', '時間後', '分後', '少し後'],
     };
 
     const regex = /(\d){4}-(\d){2}-(\d){2}\s(\d){2}:(\d){2}:(\d){2}/;
@@ -49,14 +49,32 @@ const gloomyDate = {
 
       const baseDate = Number(new Date(newFormat));
       const date = Number(this.newDate());
-      const differ = Math.floor((date - baseDate) / 1000);
+      const differ = Math.floor((baseDate - date) / 1000); // 현재와 입력 날짜의 차이(초 단위)
 
-      if (differ / 31536000 > 1) return `${Math.floor(differ / 31536000)}${unit[lang][0]}`;
-      else if (differ / 2592000 > 1) return `${Math.floor(differ / 2592000)}${unit[lang][1]}`;
-      else if (differ / 86400 > 1) return `${Math.floor(differ / 86400)}${unit[lang][2]}`;
-      else if (differ / 3600 > 1) return `${Math.floor(differ / 3600)}${unit[lang][3]}`;
-      else if (differ / 60 > 1) return `${Math.floor(differ / 60)}${unit[lang][4]}`;
-      else return `${unit[lang][5]}`;
+      if (differ === 0) return `${unit[lang][5]}`;
+
+      const absDiffer = Math.abs(differ);
+      const years = Math.floor(absDiffer / 31536000);
+      const months = Math.floor(absDiffer / 2592000);
+      const days = Math.floor(absDiffer / 86400);
+      const hours = Math.floor(absDiffer / 3600);
+      const minutes = Math.floor(absDiffer / 60);
+
+      if (differ > 0) { // 미래 날짜
+        if (years > 1) return `${years}${unit[lang][6]}`;
+        else if (months > 1) return `${months}${unit[lang][7]}`;
+        else if (days > 1) return `${days}${unit[lang][8]}`;
+        else if (hours > 1) return `${hours}${unit[lang][9]}`;
+        else if (minutes > 1) return `${minutes}${unit[lang][10]}`;
+        else return `${unit[lang][11]}`;
+      } else { // 과거 날짜
+        if (years > 1) return `${years}${unit[lang][0]}`;
+        else if (months > 1) return `${months}${unit[lang][1]}`;
+        else if (days > 1) return `${days}${unit[lang][2]}`;
+        else if (hours > 1) return `${hours}${unit[lang][3]}`;
+        else if (minutes > 1) return `${minutes}${unit[lang][4]}`;
+        else return `${unit[lang][5]}`;
+      }
     } catch (err) {
       console.error(err);
     }

@@ -57,6 +57,11 @@ console.log(result); // 예상 출력: '1년 전'
   - `X년 전`, `X달 전`, `X일 전`, `X시간 전`, `X분 전`, `방금 전` 등의 형식
   - 2번째 인자로 `en` 또는 `jp`를 넣으면 해당 언어로 출력됩니다.
 
+- **미래 날짜 처리**:
+  - 이제 과거뿐만 아니라 미래 날짜도 처리할 수 있습니다. 예를 들어, `1년 후`, `2달 후`, `3일 후`와 같은 출력이 가능합니다. 이 기능은 `gloomyDate.date` 함수에서 자동으로 처리됩니다.
+  - 예) `gloomyDate.date('2025-08-15 10:00:00')` // 예상 출력: '1년 후'
+  - 예) `gloomyDate.date('2023-10-01 10:00:00')` // 예상 출력: '1달 전'
+
 ### 실제 사용 사례
 
 ```javascript
@@ -64,7 +69,8 @@ import gloomyDate from 'gloomydate';
 
 const [data, setData] = useState([
   { title: 'title1', date: '2022-05-10 10:55:40' },
-  { title: 'title2', date: '2023-02-11 15:50:30' }
+  { title: 'title2', date: '2023-02-11 15:50:30' },
+  { title: 'title3', date: '2025-08-15 10:00:00' } // 미래 날짜 예시
 ]);
 
 useEffect(() => {
@@ -77,7 +83,7 @@ return (
   <div className="list-bg">
     {data.map((e, i) =>
       <div key={i}>
-        <p className="date">{e.date}</p> {/* 예상 출력: '2달 전' */}
+        <p className="date">{e.date}</p> {/* 예상 출력: '2달 전', '1년 전', '1년 후' */}
       </div>
     )}
   </div>
@@ -90,6 +96,7 @@ return (
 <div class="list-bg">
     <p class="date">11달 전</p>
     <p class="date">2달 전</p>
+    <p class="date">1년 후</p>
 </div>
 ```
 
@@ -100,4 +107,4 @@ return (
 
 ---
 
-이제 `GloomyDate`를 ESM 환경과 MPA 환경 모두에서 쉽게 사용할 수 있습니다! 🎉
+이제 `GloomyDate`를 ESM 환경과 MPA 환경 모두에서 쉽게 사용할 수 있으며, 과거와 미래 날짜 모두를 처리할 수 있습니다! 🎉

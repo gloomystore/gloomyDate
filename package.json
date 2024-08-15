@@ -1,29 +1,88 @@
 {
   "name": "gloomydate",
-  "version": "1.1.8",
-  "description": "this returns past time string",
+  "version": "1.2.0",
+  "description": "A library for calculating relative time strings, compatible with both ESM and MPA environments.",
   "type": "module",
-  "main": "gloomyDate.esm.js",
-  "module": "gloomyDate.esm.js",
-  "scripts": {
-    "test": "node --experimental-modules test.mjs"
+  "main": "gloomyDate.js",
+  "module": "gloomyDate.js",
+  "exports": {
+    ".": {
+      "import": "./gloomyDate.mjs.js",
+      "require": "./gloomyDate.cjs.js"
+    }
   },
+  "files": [
+    "gloomyDate.mjs.js",
+    "gloomyDate.cjs.js",
+    "gloomyDate.js",
+    "LICENSE",
+    "README.md"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gloomystore/gloomyDate.git"
   },
-  "keywords": [
-    "getDate",
-    "date",
-    "gloomyDate",
-    "android",
-    "ios"
-  ],
-  "author": "gloomystore",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/gloomystore/gloomyDate/issues"
-  },
   "homepage": "https://github.com/gloomystore/gloomyDate#readme",
-  "releaseDate": "April 25, 2023"
+  "license": "Apache-2.0",
+  "keywords": [
+    "date",
+    "datetime",
+    "relative-time",
+    "gloomydate",
+    "time-ago",
+    "javascript",
+    "date-time",
+    "ESM",
+    "CJS",
+    "MPA",
+    "time-calculation",
+    "time-difference",
+    "date-time-difference",
+    "date-difference",
+    "time-formatter",
+    "relative-time-calculator",
+    "elapsed-time",
+    "time-since",
+    "ago-calculator",
+    "date-utility",
+    "시간 계산",
+    "날짜 계산",
+    "리액트 날짜 계산",
+    "뷰 시간 계산"
+  ],
+  "author": "GloomyStore",
+  "copyright": "Copyright © 2024 GloomyStore",
+  "dependencies": {},
+  "devDependencies": {
+  },
+  "peerDependencies": {},
+  "scripts": {
+
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "env": {
+      "browser": true,
+      "node": true
+    }
+  }
 }

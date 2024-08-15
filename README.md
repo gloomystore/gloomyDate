@@ -12,7 +12,7 @@
   - `npm i gloomydate`로 설치합니다.
 
 - **일반 HTML 프로젝트 (MPA)**:
-  - `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js'></script>`로 추가합니다.
+  - `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.cjs.js'></script>`로 추가합니다.
 
 ### 사용
 
@@ -41,8 +41,10 @@ console.log(result); // 예상 출력: '1년 전'
   1. `'2023-04-25 14:55:40'` 형태의 문자열 (string)
   2. `'20230425145540'` 형태의 문자열 (string)
   3. `20230425145540` 형태의 숫자 (number)
+  4. `Date` 객체 (JavaScript Date 객체)
 
   예) `gloomyDate.date('20230425145540')`  // 예상 출력: '1년 전'
+  예) `gloomyDate.date(new Date())`       // 현재 시간에 대한 결과
 
 - **외국어 인자**:
   - `ko`, `en`, `jp` 총 3개 국어에 대응합니다.

@@ -1,6 +1,6 @@
 {
   "name": "gloomydate",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A library for calculating relative time strings, compatible with both ESM and MPA environments.",
   "type": "module",
   "main": "gloomyDate.js",

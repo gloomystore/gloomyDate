@@ -8,18 +8,18 @@
   <script defer src="./gloomyDate.js"></script>
   <script defer src="./demo/highlight.min.js"></script>
   <script>
-    window.addEventListener('load',()=>{
-      for(let e of document.querySelectorAll('code')){
-        const origin = e.innerHTML.toString()
-        let changed = origin.replace(/\</g,'&lt;');
-        changed = changed.replace(/["](\>)/g,'"&gt;');
-        changed = changed.replace(/['](\>)/g,`'&gt;`);
-        e.innerHTML = changed
+    window.addEventListener('load', () => {
+      for (let e of document.querySelectorAll('code')) {
+        const origin = e.innerHTML.toString();
+        let changed = origin.replace(/\</g, '&lt;');
+        changed = changed.replace(/["](\>)/g, '"&gt;');
+        changed = changed.replace(/['](\>)/g, `'&gt;`);
+        e.innerHTML = changed;
       }
       hljs.highlightAll();
-    })
+    });
   </script>
-  <link rel="stylesheet" href="./demo/styls.css">
+  <link rel="stylesheet" href="./demo/styles.css">
   <link rel="stylesheet" href="./demo/highlight.css">
 </head>
 
@@ -30,45 +30,46 @@
       <dl class="dl">
         <dt>What is gloomyDate.js?</dt>
         <dd>
-          <h4 class="title-04 mt-40">intro</h4>
+          <h4 class="title-04 mt-40">Intro</h4>
           <p class="txt">
-            you guys should faced problem with calculating Date.
-            But now on, you can convert the date with <span>gloomyDate.js</span>! <br />
-            you've ever felt difficulty in converting Date in board, comment, and so on...
-            you can put the string in <span>gloomyDate.date(str)</span>, and convert the date with using gloomyDate.
+            If you have faced problems with calculating dates, you can now convert dates using <span>gloomyDate.js</span>! <br />
+            If you've ever struggled with converting dates in boards, comments, and so on, you can use <span>gloomyDate.date(str)</span> to convert dates easily.
             <br /><br />
-            developers may love it.
-            </p>
-<pre>
+            Developers may find it useful.
+          </p>
+          <pre>
 <code class='js'>
 function App() {
-  const [data,setData] = useState([{ title: 'title1', date: '2022-05-10 10:55:40'}, { title: 'title2', date: '2023-02-11 15:50:30'}])
-  useEffect(()=>{
-    const newData = [...data]
-    newData.forEach(e=> e.date = gloomyDate.date(e.date,'en'))
-    setData(newData)
-  },[])
+  const [data, setData] = useState([
+    { title: 'title1', date: '2022-05-10 10:55:40' },
+    { title: 'title2', date: '2023-02-11 15:50:30' }
+  ]);
+
+  useEffect(() => {
+    const newData = [...data];
+    newData.forEach(e => e.date = gloomyDate.date(e.date, 'en'));
+    setData(newData);
+  }, []);
+
   return (
-    <div class="list">
-    {
-      data.map((elm,idx)=>
-      <div key={idx}>
-        <p class="title">{e.title}</p>
-        <p class="date">{e.date}</p> {/* expected: 1 years ago */}
-      </div>
-      )
-    }
+    <div className="list">
+      {data.map((elm, idx) =>
+        <div key={idx}>
+          <p className="title">{elm.title}</p>
+          <p className="date">{elm.date}</p> {/* Expected: 1 years ago */}
+        </div>
+      )}
     </div>
   );
 }
 </code>
 </pre>
           <p>
-          <br />
-          Expected
-          <br />
+            <br />
+            Expected Output
+            <br />
           </p>
-<pre>
+          <pre>
 <code class="js white">
 title1
 1 years ago
@@ -77,63 +78,54 @@ title2
 2 months ago
 </code>
 </pre>
-          <p>
-            <br /><br /> 
-          </p>
-          <h4 class="title-04 mt-40">deployment</h4>
+          <h4 class="title-04 mt-40">Deployment</h4>
           <p class="txt">
-            being deplyed by npm publish. <br />
+            Deployed via npm publish. <br />
           </p>
-<pre>
+          <pre>
 <code class="language-js">
-npm i gloomydate
+npm install gloomydate
 </code>
 </pre>
-            <p>
-            makes your package has gloomyDate <br /><br />
-            i made this ES Module because of regarding tree shaking, and will make this with named export.
+          <p>
+            This will include gloomyDate in your package.<br /><br />
+            I made this ES Module to support tree shaking and will also make it available with named exports.
             <br /><br />
-            you can use gloomyDate in common html project 
-            </p>
-<pre>
+            You can use gloomyDate in a common HTML project.
+          </p>
+          <pre>
 <code class="language-html">
 &lt;script src="https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js"&gt;&lt;/script&gt;
-
 </code>
 </pre>
-            <p>
-            (not the module system)
+          <p>
+            (not using the module system)
             <br /><br />
-            and manual is same with React's
+            The usage is similar to React's.
             <br /><br />
-            <br /><br />
-            this support with 3 global language, and input will be 3 types.
+            This supports 3 global languages and accepts 3 types of input.
           </p>
-<pre>
+          <pre>
 <code class="language-js">
-gloomyDate.date('2023-04-26 08:10:22','en') // formatted string
-gloomyDate.date('20230426081022','jp') // string
-gloomyDate.date(20230426081022,'ko') // number
-
+gloomyDate.date('2023-04-26 08:10:22', 'en') // formatted string
+gloomyDate.date('20230426081022', 'jp') // string
+gloomyDate.date(20230426081022, 'ko') // number
 </code>
 </pre>
           <p>
-            'ko', 'jp', 'en' <br />
-            3 language supported
-            <br /><br />
-            Expected: 
+            Supported languages: 'ko', 'jp', 'en'. <br />
+            Expected Output:
           </p>
-<pre>
+          <pre>
 <code class="js white">
-2days ago
+2 days ago
 2日前
-2일 전
+2日前
 </code>
 </pre>
           <p>
-            default value is korean. ('ko') <br /><br />
-            input should be 14 length of string, number,<br />
-            and it can support format of 'YY-mm-dd H:i:s'
+            Default language is Korean ('ko'). <br /><br />
+            Input should be a string or number with a length of 14, or in the format 'YYYY-MM-DD HH:MM:SS'.
           </p>
         </dd>
       </dl>
@@ -145,26 +137,27 @@ gloomyDate.date(20230426081022,'ko') // number
         <input type="text" id="num" value="20230424140101" />
       </p>
       <p>
-        <button onclick="javascript:generator()">generate</button>
+        <button onclick="generator()">Generate</button>
       </p>
       <p>
         <input type="text" id="num2" value="2022-09-24 14:30:01" />
       </p>
       <p>
-        <button onclick="javascript:generator2()">generate</button>
+        <button onclick="generator2()">Generate</button>
       </p>
     </div>
 
   </div>
 </body>
 <script>
-function generator(){
-  const num = document.querySelector('#num').value
-  alert(gloomyDate.date(num,'en'))
-}  
-function generator2(){
-  const num = document.querySelector('#num2').value
-  alert(gloomyDate.date(num,'en'))
-}  
+function generator() {
+  const num = document.querySelector('#num').value;
+  alert(gloomyDate.date(num, 'en'));
+}
+
+function generator2() {
+  const num = document.querySelector('#num2').value;
+  alert(gloomyDate.date(num, 'en'));
+}
 </script>
 </html>

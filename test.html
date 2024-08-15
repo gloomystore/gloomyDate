@@ -7,8 +7,8 @@
   <title>gloomyDate</title>
   <!-- <script defer src="./gloomyDate.js" type="module"></script> -->
   <script type="module">
-    import { gloomyDate } from './gloomyDate.js'
-    const d = Number(new Date()) + 1000
+    import gloomyDate from './gloomyDate.js'
+    const d = Number(new Date()) + 10000000
     const date = gloomyDate.date(d)
     console.log(gloomyDate.date)
     document.body.append(date)

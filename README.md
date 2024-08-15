@@ -1,96 +1,90 @@
 # GloomyDate
 
-이 프로젝트는 FE개발자 [GloomyStore](https://www.gloomy-store.com)의 날짜 계산 라이브러리입니다.
+This project is a date calculation library developed by the FE developer [GloomyStore](https://www.gloomy-store.com).
 
-## 사용법
+## Usage
 
-간단합니다.
+It's simple.
 
-### 설치
+### Installation
 
 - **Node.js (ESM)**:
-  - `npm i gloomydate`로 설치합니다.
+  - Install using `npm i gloomydate`.
 
-- **일반 HTML 프로젝트 (MPA)**:
-  - `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.cjs.js'></script>`로 추가합니다.
+- **General HTML Project (MPA)**:
+  - Add it using `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.cjs.js'></script>`.
 
-### 사용
+### How to Use
 
-#### ESM 방식
+#### ESM Method
 
 ```javascript
 import gloomyDate from 'gloomydate';
 
 const result = gloomyDate.date('2022-05-02 14:10:44');
-console.log(result); // 예상 출력: '1년 전'
+console.log(result); // Expected output: '1년 전'
 ```
 
-#### MPA 방식
+#### MPA Method
 
 ```html
 <script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js'></script>
 <script>
-  const result = window.gloomyDate.date('2022-05-02 14:10:44');
-  console.log(result); // 예상 출력: '1년 전'
+  const result = window.gloomyDate.date('2022-05-02 14:10:44', 'en');
+  console.log(result); // Expected output: 'before 1 year'
 </script>
 ```
 
-### 입력 (Input)
+### Input
 
-- **세 가지 입력 방식**을 지원합니다:
-  1. `'2023-04-25 14:55:40'` 형태의 문자열 (string)
-  2. `'20230425145540'` 형태의 문자열 (string)
-  3. `20230425145540` 형태의 숫자 (number)
-  4. `Date` 객체 (JavaScript Date 객체)
+- **Supports three input formats**:
+  1. String in the format `'2023-04-25 14:55:40'`
+  2. String in the format `'20230425145540'`
+  3. Int timestamp in the format `1723729654882` (number)
+  4. `Date` object (JavaScript Date object)
 
-  예) `gloomyDate.date('20230425145540')`  // 예상 출력: '1년 전'
-  예) `gloomyDate.date(new Date())`       // 현재 시간에 대한 결과
+  Example: `gloomyDate.date('20230425145540')`  // Expected output: '1년 전'
+  Example: `gloomyDate.date(new Date())`       // Output for the current time
 
-- **외국어 인자**:
-  - `ko`, `en`, `jp` 총 3개 국어에 대응합니다.
-  - 예) `gloomyDate.date('20230425145540', 'en')`
-    예상 출력: `1 years ago`
+- **Language Option**:
+  - Supports `ko`, `en`, `jp` for three languages. The default output is in Korean if the second argument is not provided.
+  - Example: `gloomyDate.date('20230425145540', 'en')`
+    Expected output: `1 year ago`
 
-### 출력 (Output)
+### Output
 
-- **자동으로 계산된 문자열**을 반환합니다:
-  - `X년 전`, `X달 전`, `X일 전`, `X시간 전`, `X분 전`, `방금 전` 등의 형식
-  - 2번째 인자로 `en` 또는 `jp`를 넣으면 해당 언어로 출력됩니다.
+- **Returns an automatically calculated string**:
+  - Formats like `X년 전`, `X달 전`, `X일 전`, `X시간 전`, `X분 전`, `방금 전` in Korean.
+  - If you pass `en` or `jp` as the second argument, the output will be in that language.
 
-- **미래 날짜 처리**:
-  - 이제 과거뿐만 아니라 미래 날짜도 처리할 수 있습니다. 예를 들어, `1년 후`, `2달 후`, `3일 후`와 같은 출력이 가능합니다. 이 기능은 `gloomyDate.date` 함수에서 자동으로 처리됩니다.
-  - 예) `gloomyDate.date('2025-08-15 10:00:00')` // 예상 출력: '1년 후'
-  - 예) `gloomyDate.date('2023-10-01 10:00:00')` // 예상 출력: '1달 전'
+- **Future Date Handling**:
+  - Now, it can handle future dates as well as past dates. Outputs like `1년 후`, `2달 후`, `3일 후` are possible. This is handled automatically by the `gloomyDate.date` function.
+  - Example: `gloomyDate.date('2025-08-15 10:00:00')` // Expected output: '1년 후'
+  - Example: `gloomyDate.date('2023-10-01 10:00:00')` // Expected output: '1달 전'
 
-### 실제 사용 사례
+### Real-World Usage Example
 
 ```javascript
 import gloomyDate from 'gloomydate';
 
 const [data, setData] = useState([
-  { title: 'title1', date: '2022-05-10 10:55:40' },
-  { title: 'title2', date: '2023-02-11 15:50:30' },
-  { title: 'title3', date: '2025-08-15 10:00:00' } // 미래 날짜 예시
+  { title: 'title1', date: gloomyDate.date('2022-05-10 10:55:40') },
+  { title: 'title2', date: gloomyDate.date('2023-02-11 15:50:30') },
+  { title: 'title3', date: gloomyDate.date('2025-08-15 10:00:00') } // Example of a future date
 ]);
-
-useEffect(() => {
-  const newData = [...data];
-  newData.forEach(e => e.date = gloomyDate.date(e.date));
-  setData(newData);
-}, []);
 
 return (
   <div className="list-bg">
     {data.map((e, i) =>
       <div key={i}>
-        <p className="date">{e.date}</p> {/* 예상 출력: '2달 전', '1년 전', '1년 후' */}
+        <p className="date">{e.date}</p> {/* Expected output: '2달 전', '1년 전', '1년 후' */}
       </div>
     )}
   </div>
 );
 ```
 
-### 실제로 렌더된 HTML 예시
+### Example of Rendered HTML
 
 ```html
 <div class="list-bg">
@@ -100,11 +94,11 @@ return (
 </div>
 ```
 
-## 시작하기
+## Getting Started
 
-터미널에서 `npm install gloomydate` 명령어로 `gloomydate` 모듈을 설치하십시오.
-설치 후, `npm start` 또는 `yarn start` 명령어로 앱을 시작하십시오.
+Install the `gloomydate` module by running `npm install gloomydate` in your terminal.
+After installation, start the app with `npm start` or `yarn start`.
 
 ---
 
-이제 `GloomyDate`를 ESM 환경과 MPA 환경 모두에서 쉽게 사용할 수 있으며, 과거와 미래 날짜 모두를 처리할 수 있습니다! 🎉
+Now, you can easily use `GloomyDate` in both ESM and MPA environments, and it can handle both past and future dates! 🎉

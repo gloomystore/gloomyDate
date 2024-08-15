@@ -1,5 +1,3 @@
-// gloomyDate.js (CJS 형식)
-
 const gloomyDate = {
   date: function(input, lang = 'ko') {
     let timestamp;
@@ -10,6 +8,8 @@ const gloomyDate = {
     } else if (typeof(input) === 'string') {
       // 문자열 입력을 타임스탬프로 변환
       if (this.isDateTimeFormat(input)) {
+        timestamp = new Date(input.replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1-$2-$3T$4:$5:$6')).getTime();
+      } else if (this.isLegacyFormat(input)) {
         timestamp = new Date(input.replace('T', ' ')).getTime();
       } else {
         // 형식이 맞지 않는 경우, 타임스탬프로 변환할 수 없음
@@ -24,14 +24,14 @@ const gloomyDate = {
       return input;
     }
 
-    const now = this.newDate();
-    const differ = Math.floor((timestamp - now) / 1000); // 현재와 입력 날짜의 차이(초 단위)
-
     const unit = {
       ko: ['년 전', '달 전', '일 전', '시간 전', '분 전', '방금 전', '년 후', '달 후', '일 후', '시간 후', '분 후', '잠시 후'],
       en: ['years ago', 'months ago', 'days ago', 'hours ago', 'minutes ago', 'now', 'years later', 'months later', 'days later', 'hours later', 'minutes later', 'moments later'],
       jp: ['年前', '月前', '日前', '時間前', '分前', '今', '年後', '月後', '日後', '時間後', '分後', '少し後'],
     };
+
+    const now = this.newDate();
+    const differ = Math.floor((timestamp - now) / 1000); // 현재와 입력 날짜의 차이(초 단위)
 
     if (differ === 0) return `${unit[lang][5]}`;
 
@@ -67,6 +67,13 @@ const gloomyDate = {
   },
 
   isDateTimeFormat: function(str) {
+    // 체크할 포맷: 'YYYYMMDDHHMMSS'
+    const regex = /^\d{14}$/;
+    return regex.test(str);
+  },
+
+  isLegacyFormat: function(str) {
+    // 기존 포맷: 'YYYY-MM-DD HH:MM:SS' 또는 'YYYYMMDD HH:MM:SS'
     const regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
     return regex.test(str);
   }
@@ -76,5 +83,3 @@ const gloomyDate = {
 if (typeof window !== 'undefined') {
   window.gloomyDate = gloomyDate;
 }
-
-module.exports = gloomyDate;

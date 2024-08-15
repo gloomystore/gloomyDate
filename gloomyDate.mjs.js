@@ -8,6 +8,8 @@ const gloomyDate = {
     } else if (typeof(input) === 'string') {
       // 문자열 입력을 타임스탬프로 변환
       if (this.isDateTimeFormat(input)) {
+        timestamp = new Date(input.replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1-$2-$3T$4:$5:$6')).getTime();
+      } else if (this.isLegacyFormat(input)) {
         timestamp = new Date(input.replace('T', ' ')).getTime();
       } else {
         // 형식이 맞지 않는 경우, 타임스탬프로 변환할 수 없음
@@ -40,8 +42,6 @@ const gloomyDate = {
     const hours = Math.floor(absDiffer / 3600);
     const minutes = Math.floor(absDiffer / 60);
 
-   
-
     if (differ > 0) { // 미래 날짜
       if (years > 1) return `${years}${unit[lang][6]}`;
       else if (months > 1) return `${months}${unit[lang][7]}`;
@@ -67,6 +67,13 @@ const gloomyDate = {
   },
 
   isDateTimeFormat: function(str) {
+    // 체크할 포맷: 'YYYYMMDDHHMMSS'
+    const regex = /^\d{14}$/;
+    return regex.test(str);
+  },
+
+  isLegacyFormat: function(str) {
+    // 기존 포맷: 'YYYY-MM-DD HH:MM:SS' 또는 'YYYYMMDD HH:MM:SS'
     const regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
     return regex.test(str);
   }

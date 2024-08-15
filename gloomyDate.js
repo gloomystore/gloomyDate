@@ -22,6 +22,12 @@ const gloomyDate = {
       return input;
     }
 
+    const unit = {
+      ko: ['년 전', '달 전', '일 전', '시간 전', '분 전', '방금 전', '년 후', '달 후', '일 후', '시간 후', '분 후', '잠시 후'],
+      en: ['years ago', 'months ago', 'days ago', 'hours ago', 'minutes ago', 'now', 'years later', 'months later', 'days later', 'hours later', 'minutes later', 'moments later'],
+      jp: ['年前', '月前', '日前', '時間前', '分前', '今', '年後', '月後', '日後', '時間後', '分後', '少し後'],
+    };
+
     const now = this.newDate();
     const differ = Math.floor((timestamp - now) / 1000); // 현재와 입력 날짜의 차이(초 단위)
 
@@ -34,11 +40,7 @@ const gloomyDate = {
     const hours = Math.floor(absDiffer / 3600);
     const minutes = Math.floor(absDiffer / 60);
 
-    const unit = {
-      ko: ['년 전', '달 전', '일 전', '시간 전', '분 전', '방금 전', '년 후', '달 후', '일 후', '시간 후', '분 후', '잠시 후'],
-      en: ['years ago', 'months ago', 'days ago', 'hours ago', 'minutes ago', 'now', 'years later', 'months later', 'days later', 'hours later', 'minutes later', 'moments later'],
-      jp: ['年前', '月前', '日前', '時間前', '分前', '今', '年後', '月後', '日後', '時間後', '分後', '少し後'],
-    };
+   
 
     if (differ > 0) { // 미래 날짜
       if (years > 1) return `${years}${unit[lang][6]}`;

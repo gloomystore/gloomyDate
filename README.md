@@ -1,104 +1,199 @@
 # GloomyDate
 
-This project is a date calculation library developed by the FE developer [GloomyStore](https://www.gloomy-store.com).
+[![npm version](https://img.shields.io/npm/v/gloomydate.svg)](https://www.npmjs.com/package/gloomydate)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/gloomydate)](https://bundlephobia.com/package/gloomydate)
 
-## Usage
+A lightweight, zero-dependency date utility library for converting dates into human-readable relative time strings. Perfect for displaying timestamps in social media feeds, comment sections, and real-time applications.
 
-It's simple.
+Developed by [GloomyStore](https://www.gloomy-store.com) 🚀
 
-### Installation
+## ✨ Features
 
-- **Node.js (ESM)**:
-  - Install using `npm i gloomydate`.
+- 🌍 **Multi-language Support**: English, Korean, and Japanese
+- 📅 **Universal Date Format Support**: Handles ISO 8601, Unix timestamps, custom formats, and more
+- ⚡ **Lightning Fast**: Zero dependencies, minimal bundle size
+- 🔮 **Past & Future Dates**: Automatically handles both historical and upcoming dates
+- 🎯 **TypeScript Ready**: Full TypeScript support with type definitions
+- 🌐 **Universal**: Works in Node.js, browsers, and all modern frameworks (React, Vue, Svelte, etc.)
 
-- **General HTML Project (MPA)**:
-  - Add it using `<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.cjs.js'></script>`.
+## 📦 Installation
 
-### How to Use
+### Node.js (ESM/CommonJS)
 
-#### ESM Method
-
-```javascript
-import gloomyDate from 'gloomydate';
-
-const result = gloomyDate.date('2022-05-02 14:10:44');
-console.log(result); // Expected output: '1년 전'
+```bash
+npm install gloomydate
+# or
+yarn add gloomydate
+# or
+pnpm add gloomydate
 ```
 
-#### MPA Method
+### CDN (Browser)
 
 ```html
-<script src='https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js'></script>
+<!-- Latest version -->
+<script src="https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js"></script>
+
+<!-- CommonJS version -->
+<script src="https://cdn.gloomy-store.com/gloomyDate/gloomyDate.cjs.js"></script>
+```
+
+## 🚀 Quick Start
+
+### ESM (Modern JavaScript)
+
+```javascript
+import gloomyDate from "gloomydate"
+
+const result = gloomyDate.date("2022-05-02 14:10:44", "en")
+console.log(result) // "2 years ago"
+```
+
+### CommonJS (Node.js)
+
+```javascript
+const gloomyDate = require("gloomydate")
+
+const result = gloomyDate.date(new Date(), "en")
+console.log(result) // "now"
+```
+
+### Browser (Global)
+
+```html
+<script src="https://cdn.gloomy-store.com/gloomyDate/gloomyDate.js"></script>
 <script>
-  const result = window.gloomyDate.date('2022-05-02 14:10:44', 'en');
-  console.log(result); // Expected output: 'before 1 year'
+  const result = window.gloomyDate.date("2024-10-27T10:30:00Z", "en")
+  console.log(result) // "3 days ago"
 </script>
 ```
 
-### Input
+## 📖 API Reference
 
-- **Supports three input formats**:
-  1. String in the format `'2023-04-25 14:55:40'`
-  2. String in the format `'20230425145540'`
-  3. Int timestamp in the format `1723729654882` (number)
-  4. `Date` object (JavaScript Date object)
+### `gloomyDate.date(input, lang?)`
 
-  Example: `gloomyDate.date('20230425145540')`  // Expected output: '1년 전'
-  Example: `gloomyDate.date(new Date())`       // Output for the current time
+Converts a date into a human-readable relative time string.
 
-- **Language Option**:
-  - Supports `ko`, `en`, `jp` for three languages. The default output is in Korean if the second argument is not provided.
-  - Example: `gloomyDate.date('20230425145540', 'en')`
-    Expected output: `1 year ago`
+#### Parameters
 
-### Output
+- **input** (required): `number | string | Date`
+  - The date/time to convert
+- **lang** (optional): `'en' | 'ko' | 'jp'`
+  - Language for output (default: `'en'`)
 
-- **Returns an automatically calculated string**:
-  - Formats like `X년 전`, `X달 전`, `X일 전`, `X시간 전`, `X분 전`, `방금 전` in Korean.
-  - If you pass `en` or `jp` as the second argument, the output will be in that language.
+#### Returns
 
-- **Future Date Handling**:
-  - Now, it can handle future dates as well as past dates. Outputs like `1년 후`, `2달 후`, `3일 후` are possible. This is handled automatically by the `gloomyDate.date` function.
-  - Example: `gloomyDate.date('2025-08-15 10:00:00')` // Expected output: '1년 후'
-  - Example: `gloomyDate.date('2023-10-01 10:00:00')` // Expected output: '1달 전'
+- `string`: Formatted relative time string
+- Returns original input if parsing fails
 
-### Real-World Usage Example
+## 🎯 Supported Input Formats
+
+GloomyDate supports virtually **all common date formats**:
+
+### ISO 8601 Standard Formats
 
 ```javascript
-import gloomyDate from 'gloomydate';
-
-const [data, setData] = useState([
-  { title: 'title1', date: gloomyDate.date('2022-05-10 10:55:40') },
-  { title: 'title2', date: gloomyDate.date('2023-02-11 15:50:30') },
-  { title: 'title3', date: gloomyDate.date('2025-08-15 10:00:00') } // Example of a future date
-]);
-
-return (
-  <div className="list-bg">
-    {data.map((e, i) =>
-      <div key={i}>
-        <p className="date">{e.date}</p> {/* Expected output: '2달 전', '1년 전', '1년 후' */}
-      </div>
-    )}
-  </div>
-);
+gloomyDate.date("2022-12-12T10:10:10Z", "en") // ✅ With UTC timezone
+gloomyDate.date("2022-12-12T10:10:10", "en") // ✅ Without timezone
+gloomyDate.date("2022-12-12T10:10:10.000", "en") // ✅ With milliseconds
+gloomyDate.date("2022-12-12T10:10:10.000Z", "en") // ✅ Full ISO format
+gloomyDate.date("2022-12-12T10:10:10+09:00", "en") // ✅ With timezone offset
 ```
 
-### Example of Rendered HTML
+### Custom Formats
 
-```html
-<div class="list-bg">
-    <p class="date">11달 전</p>
-    <p class="date">2달 전</p>
-    <p class="date">1년 후</p>
-</div>
+```javascript
+gloomyDate.date("20221212101010", "en") // ✅ YYYYMMDDHHMMSS (14 digits)
+gloomyDate.date("2022-12-12 10:10:10", "en") // ✅ Legacy format
+gloomyDate.date("2022-12-12", "en") // ✅ Date only
+gloomyDate.date("2022/12/12", "en") // ✅ Slash format
+gloomyDate.date("12/12/2022", "en") // ✅ US format
 ```
 
-## Getting Started
+### Natural Language
 
-Install the `gloomydate` module by running `npm install gloomydate` in your terminal.
-After installation, start the app with `npm start` or `yarn start`.
+```javascript
+gloomyDate.date("December 17, 2024", "en") // ✅ Full text
+gloomyDate.date("Dec 17 2024", "en") // ✅ Abbreviated
+```
 
----
+### Unix Timestamps
 
-Now, you can easily use `GloomyDate` in both ESM and MPA environments, and it can handle both past and future dates! 🎉
+```javascript
+gloomyDate.date(1671696610000, "en") // ✅ Milliseconds (13 digits)
+gloomyDate.date(1671696610, "en") // ✅ Seconds (10 digits)
+```
+
+### JavaScript Date Objects
+
+```javascript
+gloomyDate.date(new Date(), "en") // ✅ Current date
+gloomyDate.date(new Date("2022-12-12"), "en") // ✅ Specific date
+```
+
+## 🌍 Multi-Language Support
+
+### English (en)
+
+```javascript
+gloomyDate.date("2023-10-27 12:00:00", "en")
+// Past: "1 year ago", "2 months ago", "7 days ago", "5 hours ago", "30 minutes ago", "now"
+// Future: "1 year later", "2 months later", "7 days later", "5 hours later", "30 minutes later", "moments later"
+```
+
+### Korean (ko)
+
+```javascript
+gloomyDate.date("2023-10-27 12:00:00", "ko")
+// Past: "1년 전", "2달 전", "7일 전", "5시간 전", "30분 전", "방금 전"
+// Future: "1년 후", "2달 후", "7일 후", "5시간 후", "30분 후", "잠시 후"
+```
+
+### Japanese (jp)
+
+```javascript
+gloomyDate.date("2023-10-27 12:00:00", "jp")
+// Past: "1年前", "2月前", "7日前", "5時間前", "30分前", "今"
+// Future: "1年後", "2月後", "7日後", "5時間後", "30分後", "少し後"
+```
+
+## 💡 Real-World Examples
+
+### React with Hooks
+
+```jsx
+import { useState, useEffect } from "react"
+import gloomyDate from "gloomydate"
+
+function CommentList() {
+  const [comments, setComments] = useState([
+    { id: 1, text: "Great post!", timestamp: "2024-10-26T14:30:00Z" },
+    { id: 2, text: "Thanks for sharing", timestamp: "2024-10-27T09:15:00Z" },
+    {
+      id: 3,
+      text: "Looking forward to the next one",
+      timestamp: "2024-10-28T18:00:00Z",
+    },
+  ])
+
+  return (
+    <div className="comments">
+      {comments.map((comment) => (
+        <div key={comment.id} className="comment">
+          <p>{comment.text}</p>
+          <span className="timestamp">
+            {gloomyDate.date(comment.timestamp, "en")}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// Output:
+// "1 day ago"
+// "18 hours ago"
+// "4
+```
+
